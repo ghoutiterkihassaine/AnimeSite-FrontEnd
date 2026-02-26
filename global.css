@@ -1,0 +1,105 @@
+:root {
+  /* Dark Mode Variables */
+  --bg-dark: #0a0b0d;
+  --bg-card: #16171a;
+  --bg-input: #25262b;
+  --accent: #00d4ff;
+  --text-main: #ffffff;
+  --text-dim: #a0a0a0;
+  --border: #2d2e32;
+  --header-h: 75px;
+  --side-w: 240px;
+}
+
+body.light-mode {
+  /* Light Mode Variables */
+  --bg-dark: #f0f2f5;
+  --bg-card: #ffffff;
+  --bg-input: #e4e6eb;
+  --text-main: #1c1e21;
+  --text-dim: #65676b;
+  --border: #ced0d4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-dark);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* --- HEADER --- */
+.search-bar-container {
+  background: var(--bg-card);
+  position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 25px; border-bottom: 1px solid var(--border); z-index: 2000;
+}
+
+.left-search-bar-container img { height: 45px; cursor: pointer; }
+.right-search-bar-container img { 
+    height: 30px; cursor: pointer; filter: invert(1); transition: 0.3s; 
+}
+body.light-mode .right-search-bar-container img { filter: invert(0); }
+
+.middle-search-bar-container { flex: 1; max-width: 500px; position: relative; display: flex; align-items: center; margin: 0 20px; }
+.middle-search-bar-container img { position: absolute; left: 12px; width: 18px; opacity: 0.5; }
+.search-bar { width: 100%; background: var(--bg-input); border: 1px solid var(--border); color: var(--text-main); padding: 12px 15px 12px 40px; border-radius: 10px; outline: none; }
+
+/* --- SIDEBAR --- */
+.side-bar-container {
+  position: fixed; top: var(--header-h); left: 0; width: var(--side-w);
+  height: calc(100vh - var(--header-h)); background: var(--bg-card);
+  border-right: 1px solid var(--border); z-index: 1000; overflow-y: auto;
+}
+
+.side-bar-container a, .current-selector {
+  display: block; padding: 18px 25px; text-decoration: none;
+  font-family: 'Orbitron', sans-serif; font-size: 0.75rem; letter-spacing: 1px;
+  color: var(--text-dim); transition: 0.3s;
+}
+
+.side-bar-container a:hover, .current-selector { color: var(--accent); background: rgba(0, 212, 255, 0.05); }
+.current-selector { color: var(--accent) !important; border-left: 4px solid var(--accent); }
+
+/* --- MAIN PAGE --- */
+.main-page {
+  margin-left: var(--side-w); margin-top: var(--header-h); padding: 40px;
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--text-main);
+  margin-bottom: 25px; border-left: 4px solid var(--accent); padding-left: 15px;
+  display: inline-block; text-decoration: none;
+}
+
+/* --- GRID --- */
+.anime-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px; margin-bottom: 50px;
+}
+
+.anime {
+  background: var(--bg-card); border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border); transition: 0.3s; cursor: pointer;
+}
+
+.anime:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.anime img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
+.anime-name { padding: 12px; text-align: center; }
+.anime-name p { font-size: 0.85rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* --- SETTINGS --- */
+.settings-box { max-width: 600px; background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
+.setting-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.btn { padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; background: var(--accent); color: #000; font-family: 'Orbitron'; font-weight: bold; }
+.form-group { margin-bottom: 15px; }
+.form-group input, .form-group select { width: 100%; padding: 12px; background: var(--bg-input); border: 1px solid var(--border); color: var(--text-main); border-radius: 8px; margin-top: 5px; }
+
+/* Mobile */
+@media (max-width: 800px) {
+  .side-bar-container { display: none; }
+  .main-page { margin-left: 0; padding: 20px; }
+}

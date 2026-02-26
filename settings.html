@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <title>Settings</title>
+</head>
+<body>
+    <div class="search-bar-container">
+        <div class="left-search-bar-container"><a href="index.html"><img src="icons/site-logo.png"></a></div>
+        <h2 style="font-family:'Orbitron'">SETTINGS</h2>
+    </div>
+
+    <div class="main-page" style="margin-left:0; display:flex; justify-content:center; padding-top:150px;">
+        <div class="settings-box">
+            <div class="setting-row">
+                <div><h3>Appearance</h3><p style="color:var(--text-dim)">Switch theme</p></div>
+                <button class="btn" onclick="toggleTheme()" id="tBtn">Light Mode</button>
+            </div>
+            <hr style="border:0; border-top:1px solid var(--border); margin:30px 0;">
+            <h3>Add New Anime</h3>
+            <form style="margin-top:20px;">
+                <div class="form-group"><label>Title</label><input type="text" placeholder="Anime Name"></div>
+                <div class="form-group"><label>Category</label><select><option>Famous</option><option>New Gen</option><option>Seasonal</option><option>Completed</option><option>Old Gen</option><option>Not Completed</option></select></div>
+                <button type="button" class="btn" style="width:100%">Add Anime</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function apply(t){
+            if(t==='light'){ document.body.classList.add('light-mode'); document.getElementById('tBtn').innerText="Dark Mode"; }
+            else { document.body.classList.remove('light-mode'); document.getElementById('tBtn').innerText="Light Mode"; }
+        }
+        function toggleTheme(){
+            let t = localStorage.getItem('theme')==='light'?'dark':'light';
+            localStorage.setItem('theme', t); apply(t);
+        }
+        apply(localStorage.getItem('theme'));
+    </script>
+</body>
+</html>
